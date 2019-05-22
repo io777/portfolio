@@ -1,0 +1,51 @@
+.footer {
+  padding-top: 30px;
+  margin-top: 40px;
+  background-color: #279f7c;
+  &__title {
+    color: #ffffff;
+    font-family: 'PT Sans Narrow', sans-serif;
+    text-transform: capitalize;
+  }
+  &__desc {
+    font-size: 1.1em;
+    color: #86e5c9;
+    line-height: 1.8em;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input, &__textarea {
+    margin-top: 10px;
+    padding: 9px 20px;
+    width: 100%;
+    border: none;
+    outline: none;
+    margin-bottom: 0.8em;
+    font-size: 1em;
+    color: #a3a3a3;
+    border-radius: 5px;
+  }
+  &__textarea {
+    margin-top: 10px;
+  }
+  &__btn {
+    margin-top: 10px;
+    color: #ffffff;
+    background-color: #1f6551;
+    font-size: 1.2em;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 0.4em 1em;
+    transition: all 0.3s ease-out;
+    &:hover {
+      background-color: #86e5c9;
+    }
+  }
+  &__hr {
+    border-color: #ffffff;
+  }
+}
