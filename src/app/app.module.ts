@@ -19,7 +19,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ListComponent } from './admin/project/list/list.component';
 import { CreateComponent } from './admin/project/create/create.component';
 import { UpdateComponent } from './admin/project/update/update.component';
-import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
@@ -41,7 +41,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     HttpClientModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    AngularFireAuthModule
   ],
   providers: [AngularFirestore, AngularFireAuth],
   bootstrap: [AppComponent]

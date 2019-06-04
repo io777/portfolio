@@ -1,0 +1,27 @@
+.login {
+  &__col {
+    padding: 6%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  }
+  &__row {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__title {
+    margin-bottom: 15%;
+    text-align: center;
+    color: #333;
+  }
+  &__btn {
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+    background-color: #279f7c;
+  }
+}

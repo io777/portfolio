@@ -48,4 +48,28 @@
   &__hr {
     border-color: #ffffff;
   }
+  &__col-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__row-bottom {
+    margin: 40px 0 40px 0;
+  }
+  &__copyright {
+    font-size: 1.2em;
+    color: white;
+  }
+}
+
+.social {
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  &__item {
+    display: inline-block;
+    padding-left: 20px;
+  }
 }
