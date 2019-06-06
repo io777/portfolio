@@ -23,5 +23,8 @@
     font-weight: 600;
     color: #fff;
     background-color: #279f7c;
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 }
