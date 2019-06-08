@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
+import {MessagesService} from '../messages.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,9 @@ import { User } from 'firebase';
 export class AuthService {
   user: User;
 
-  constructor(public  afAuth: AngularFireAuth, public  router: Router) {
+  constructor(private messageService: MessagesService, public  afAuth: AngularFireAuth, public  router: Router) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        console.log(user);
         this.user = user;
         localStorage.setItem('user', JSON.stringify(this.user));
       } else {
@@ -22,13 +22,12 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
-    console.log(email);
-    console.log(password);
     try {
+      this.messageService.clear();
       await  this.afAuth.auth.signInWithEmailAndPassword(email, password);
       this.router.navigate(['admin']);
     } catch (e) {
-      console.log('Error!'  +  e.message);
+      this.messageService.add(e.message);
     }
   }
 
@@ -42,6 +41,4 @@ export class AuthService {
     const  user  =  JSON.parse(localStorage.getItem('user'));
     return  user  !==  null;
   }
-
-
 }
