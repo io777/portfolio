@@ -17,11 +17,16 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './admin/login/login.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ContactComponent } from './contact/contact.component';
-import { ListComponent } from './admin/project/list/list.component';
-import { CreateComponent } from './admin/project/create/create.component';
-import { UpdateComponent } from './admin/project/update/update.component';
 import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { ArticleComponent } from './admin/article/article.component';
+import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
+import {AdminComponent} from './admin/admin.component';
+import { ProjectComponent } from './admin/project/project.component';
+import { ProjCreateComponent } from './admin/project/proj-create/proj-create.component';
+import { ProjUpdateComponent } from './admin/project/proj-update/proj-update.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ProjectListComponent } from './admin/project/project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +37,14 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     LoginComponent,
     DashboardComponent,
     ContactComponent,
-    ListComponent,
-    CreateComponent,
-    UpdateComponent
+    ArticleComponent,
+    AdminHeaderComponent,
+    AdminComponent,
+    ProjectComponent,
+    ProjCreateComponent,
+    ProjUpdateComponent,
+    PagenotfoundComponent,
+    ProjectListComponent
   ],
   imports: [
     BrowserModule,

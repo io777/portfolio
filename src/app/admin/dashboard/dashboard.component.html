@@ -1,4 +1,30 @@
-<p>
-  dashboard works!
-  <router-outlet></router-outlet>
-</p>
+<div class="container board__container">
+  <ol class="breadcrumb mt-3">
+    <li class="breadcrumb-item active" aria-current="page">Главная панель</li>
+  </ol>
+  <div class="row board__row">
+    <div class="col-md-6 board__col-proj">
+      <div class="card card__proj">
+        <div class="card-body card-body__proj">
+          <h5 class="card-title card-title__proj">Проекты</h5>
+          <p class="card-text card-text__proj">Пректы созданные SHAP</p>
+          <a routerLink="/admin/projects" class="btn btn-sm btn-primary">
+            Всего проектов <span *ngIf="projects" class="badge badge-light">{{projects.length}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 board__col-art">
+      <div class="card card__art">
+        <div class="card-body card-body__art">
+          <h5 class="card-title card-title__art">Статьи</h5>
+          <p class="card-text card-text__art">Статьи написанные SHAP</p>
+          <a routerLink="/admin/articles" class="btn btn-sm btn-success">
+            Всего статей <span class="badge badge-light">4</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 board__col-article"></div>
+  </div>
+</div>
