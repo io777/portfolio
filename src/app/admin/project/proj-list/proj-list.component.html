@@ -1,0 +1,25 @@
+<div class="container proj__container mt-4">
+  <ol class="breadcrumb mt-3">
+    <li class="breadcrumb-item"><a routerLink="/admin">Главная панель</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Проекты</li>
+  </ol>
+  <div class="row proj__row">
+    <div class="col-md-12 proj__col">
+      <div class="card-columns">
+        <div class="card" *ngFor="let project of projects">
+          <img class="card-img-top" src="https://picsum.photos/230/160" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{project.title}}</h5>
+            <p class="card-text">{{project.description}}</p>
+            <footer class="d-flex justify-content-between">
+              <small class="text-muted">{{project.author}}</small>
+              <small class="text-muted">{{project.creationDate}}</small>
+            </footer>
+            <a routerLink="/admin/projects/{{project.id}}" class="mt-4 btn btn-sm btn-outline-primary">Обновить</a>
+            <a href="#" class="ml-2 mt-4 btn btn-sm btn-outline-danger">Удалить</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

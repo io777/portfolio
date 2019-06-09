@@ -26,7 +26,7 @@ import { ProjectComponent } from './admin/project/project.component';
 import { ProjCreateComponent } from './admin/project/proj-create/proj-create.component';
 import { ProjUpdateComponent } from './admin/project/proj-update/proj-update.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { ProjectListComponent } from './admin/project/project-list/project-list.component';
+import { ProjListComponent } from './admin/project/proj-list/proj-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { ProjectListComponent } from './admin/project/project-list/project-list.
     ProjCreateComponent,
     ProjUpdateComponent,
     PagenotfoundComponent,
-    ProjectListComponent
+    ProjListComponent
   ],
   imports: [
     BrowserModule,

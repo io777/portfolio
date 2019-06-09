@@ -1,0 +1,45 @@
+<div class="container proj-upd__container">
+  <ol class="breadcrumb mt-3">
+    <li class="breadcrumb-item"><a routerLink="/admin">Главная панель</a></li>
+    <li class="breadcrumb-item"><a routerLink="/admin/projects">Проекты</a></li>
+    <li class="breadcrumb-item active" *ngIf="project" aria-current="page">{{project.title}}</li>
+  </ol>
+  <div class="row proj-upd__row">
+    <div class="col-md-12 proj-upd__col">
+      <form *ngIf="project" [formGroup]="updProjForm" (ngSubmit)="updateProj()" novalidate>
+        <input type="text" hidden formControlName="id">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="title">Заголовок</label>
+              <input type="text" name="title" class="form-control" id="title" formControlName="title">
+            </div>
+            <div class="form-group">
+              <label for="author">Автор</label>
+              <input type="text" id="author" name="author" class="form-control" formControlName="author">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="tags">Тэги</label>
+              <input type="text" id="tags" name="tags" class="form-control" formControlName="tags">
+            </div>
+            <div class="form-group">
+              <label for="creationDate">Дата создания</label>
+              <input type="text" id="creationDate" name="creationDate" class="form-control" formControlName="creationDate">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">Описание</label>
+              <textarea class="form-control" name="description" id="description" cols="30" rows="10" formControlName="description"></textarea>
+            </div>
+          </div>
+        </div>
+        <input type="submit" class="btn btn-outline-success" value="Сохранить" [disabled]="!updProjForm.valid">
+      </form>
+    </div>
+  </div>
+</div>
