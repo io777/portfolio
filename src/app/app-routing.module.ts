@@ -10,7 +10,6 @@ import {ProjectComponent} from './admin/project/project.component';
 import {ArticleComponent} from './admin/article/article.component';
 import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
 import {ProjUpdateComponent} from './admin/project/proj-update/proj-update.component';
-import {ProjectListComponent} from './admin/project/project-list/project-list.component';
 import {ProjListComponent} from './admin/project/proj-list/proj-list.component';
 
 const routes: Routes = [

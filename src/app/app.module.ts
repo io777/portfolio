@@ -27,6 +27,8 @@ import { ProjCreateComponent } from './admin/project/proj-create/proj-create.com
 import { ProjUpdateComponent } from './admin/project/proj-update/proj-update.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProjListComponent } from './admin/project/proj-list/proj-list.component';
+import {CommonModule} from '@angular/common';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { ProjListComponent } from './admin/project/proj-list/proj-list.component
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -55,7 +58,8 @@ import { ProjListComponent } from './admin/project/proj-list/proj-list.component
     HttpClientModule,
     AngularFontAwesomeModule,
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CKEditorModule
   ],
   providers: [AngularFirestore, AngularFireAuth],
   bootstrap: [AppComponent]
