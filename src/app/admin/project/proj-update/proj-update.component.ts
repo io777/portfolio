@@ -5,6 +5,8 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 declare var $: any;
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {NotificationsService} from 'angular2-notifications';
+import {UploadService} from '../../../upload.service';
 
 @Component({
   selector: 'app-proj-update',
@@ -15,7 +17,14 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
 
   public Editor = ClassicEditor;
   project: Project;
-  constructor(private projectService: ProjectService, private route: ActivatedRoute, private fb: FormBuilder) { }
+  public imgUrl: string;
+
+  constructor(
+    private uploadService: UploadService,
+    private notifyService: NotificationsService,
+    private projectService: ProjectService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder) { }
 
   updProjForm = this.fb.group({
     id: ['', [Validators.required]],
@@ -23,7 +32,8 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
     description: ['', [Validators.required]],
     author: ['', [Validators.required]],
     creationDate: ['', [Validators.required]],
-    tags: ['', [Validators.required]]
+    tags: ['', [Validators.required]],
+    img: ['', [Validators.required]]
   });
 
   get id() {return this.updProjForm.get('id'); }
@@ -32,6 +42,7 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
   get author() {return this.updProjForm.get('author'); }
   get creationDate() {return this.updProjForm.get('creationDate'); }
   get tags() {return this.updProjForm.get('tags'); }
+  get img() {return this.updProjForm.get('img'); }
 
   ngOnInit() {
     this.projectService.getProject(this.route.snapshot.params.id).subscribe(data => {
@@ -47,6 +58,8 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
       this.updProjForm.get('author').setValue(data.data().author);
       this.updProjForm.get('creationDate').setValue(data.data().creationDate);
       this.updProjForm.get('tags').setValue(data.data().tags);
+      this.updProjForm.get('img').setValue(data.data().img);
+      this.imgUrl = data.data().img;
     });
   }
 
@@ -60,15 +73,23 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
     });
   }
 
+  uploadFile(event) {
+    this.uploadService.onFileChange(event);
+    this.uploadService.uploadFile().then(res => {
+      this.updProjForm.get('img').setValue(this.uploadService.url);
+      this.imgUrl = this.uploadService.url;
+    });
+  }
+
   updateProj() {
     // Присваиваем дату из localStorage
     this.updProjForm.value.creationDate = localStorage.getItem('creationDate');
     console.log(this.updProjForm.value);
     // Обновляем данные проекта
     this.projectService.updateProject(this.updProjForm.value).then(res => {
-      console.log(res);
+      this.notifyService.success('Успешно', 'Элемент успешно обновлен');
     }).catch(err => {
-      console.log(err);
+      this.notifyService.error('Ошибка', err);
     });
   }
 }

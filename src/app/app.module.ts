@@ -29,6 +29,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProjListComponent } from './admin/project/proj-list/proj-list.component';
 import {CommonModule} from '@angular/common';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {SimpleNotificationsModule} from 'angular2-notifications';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -59,9 +62,11 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
     AngularFontAwesomeModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-    CKEditorModule
+    CKEditorModule,
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot({position: ['top', 'right'], timeOut: 2000})
   ],
-  providers: [AngularFirestore, AngularFireAuth],
+  providers: [AngularFirestore, AngularFireAuth, AngularFireStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

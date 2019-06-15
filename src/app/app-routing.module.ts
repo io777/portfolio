@@ -11,6 +11,7 @@ import {ArticleComponent} from './admin/article/article.component';
 import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
 import {ProjUpdateComponent} from './admin/project/proj-update/proj-update.component';
 import {ProjListComponent} from './admin/project/proj-list/proj-list.component';
+import {ProjCreateComponent} from './admin/project/proj-create/proj-create.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,6 +28,10 @@ const routes: Routes = [
           {
             path: '',
             component: ProjListComponent
+          },
+          {
+            path: 'create',
+            component: ProjCreateComponent
           },
           {
             path: ':id',

@@ -1,3 +1,76 @@
-<p>
-  proj-create works!
-</p>
+<div class="container proj-upd__container">
+  <ol class="breadcrumb mt-3">
+    <li class="breadcrumb-item"><a routerLink="/admin">Главная панель</a></li>
+    <li class="breadcrumb-item"><a routerLink="/admin/projects">Проекты</a></li>
+    <li class="breadcrumb-item active" *ngIf="project" aria-current="page">{{project.title}}</li>
+  </ol>
+  <div class="row proj-upd__row">
+    <div class="col-md-12 proj-upd__col">
+      <simple-notifications></simple-notifications>
+      <div class="form-group">
+        <label>Аватарка</label>
+        <input class="form-control-file" type="file" (change)="uploadFile($event)">
+      </div>
+      <img class="my-2" *ngIf="imgUrl" width="160" height="230" src="{{imgUrl}}" alt="">
+      <form [formGroup]="createProjForm" (ngSubmit)="createProj()" novalidate>
+        <input type="text" name="img" hidden formControlName="img">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="title">Заголовок</label>
+              <input [ngClass]="{ 'is-invalid': title.invalid && (title.dirty || title.touched) }" type="text" name="title" class="form-control" id="title" formControlName="title">
+              <div *ngIf="title.invalid && (title.dirty || title.touched)" class="invalid-feedback">
+                <div *ngIf="title.errors.required">
+                  Обязательное поле
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="author">Автор</label>
+              <input [ngClass]="{ 'is-invalid': author.invalid && (author.dirty || author.touched) }" type="text" id="author" name="author" class="form-control" formControlName="author">
+              <div *ngIf="author.invalid && (author.dirty || author.touched)" class="invalid-feedback">
+                <div *ngIf="author.errors.required">
+                  Обязательное поле
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="tags">Тэги</label>
+              <input [ngClass]="{ 'is-invalid': tags.invalid && (tags.dirty || tags.touched) }" type="text" id="tags" name="tags" class="form-control" formControlName="tags">
+              <div *ngIf="tags.invalid && (tags.dirty || tags.touched)" class="invalid-feedback">
+                <div *ngIf="tags.errors.required">
+                  Обязательное поле
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="creationDate">Дата создания</label>
+              <input [ngClass]="{ 'is-invalid': creationDate.invalid && (creationDate.dirty || creationDate.touched) }" type="text" id="creationDate" name="creationDate" class="form-control" formControlName="creationDate">
+              <div *ngIf="creationDate.invalid && (creationDate.dirty || creationDate.touched)" class="invalid-feedback">
+                <div *ngIf="creationDate.errors.required">
+                  Обязательное поле
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">Описание</label>
+              <ckeditor tagName="textarea" [editor]="Editor" name="description" id="description" formControlName="description"></ckeditor>
+              <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                <div *ngIf="description.errors.required" class="danger__text">
+                  Обязательное поле
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <input type="submit" class="btn btn-outline-success" value="Сохранить" [disabled]="!createProjForm.valid">
+      </form>
+    </div>
+  </div>
+</div>

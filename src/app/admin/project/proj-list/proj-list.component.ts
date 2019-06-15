@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from '../../../db/model/project.model';
 import {ProjectService} from '../../../db/project.service';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
   selector: 'app-proj-list',
@@ -10,7 +11,7 @@ import {ProjectService} from '../../../db/project.service';
 export class ProjListComponent implements OnInit {
 
   projects: Project[];
-  constructor(private projectService: ProjectService) { }
+  constructor(private notifyService: NotificationsService, private projectService: ProjectService) { }
 
   ngOnInit() {
     this.projectService.getProjects().subscribe(data => {
@@ -21,6 +22,11 @@ export class ProjListComponent implements OnInit {
         } as Project;
       });
     });
+  }
+
+  deleteProj(projectId) {
+    this.projectService.deleteProject(projectId);
+    this.notifyService.success('Успешно', 'Элемент успешно удален');
   }
 
 }
