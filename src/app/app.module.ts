@@ -32,6 +32,7 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireStorage} from '@angular/fire/storage';
+import { SearchPipe } from './_pipe/serach/search.pipe';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {AngularFireStorage} from '@angular/fire/storage';
     ProjCreateComponent,
     ProjUpdateComponent,
     PagenotfoundComponent,
-    ProjListComponent
+    ProjListComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

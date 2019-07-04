@@ -7,6 +7,7 @@ declare var $: any;
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {NotificationsService} from 'angular2-notifications';
 import {UploadService} from '../../../upload.service';
+import { firestore } from 'firebase';
 
 @Component({
   selector: 'app-proj-update',
@@ -24,7 +25,8 @@ export class ProjCreateComponent implements OnInit, AfterViewInit {
     private notifyService: NotificationsService,
     private projectService: ProjectService,
     private route: ActivatedRoute,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder
+  ) { }
 
   createProjForm = this.fb.group({
     title: ['', [Validators.required]],
@@ -51,6 +53,7 @@ export class ProjCreateComponent implements OnInit, AfterViewInit {
     ($('#creationDate') as any).datepicker({
       onSelect: function(formattedDate, date, inst) {
         // При изменени даты сохраняем значение в localStorage
+        const test = $('#creationDate').val();
         localStorage.setItem('creationDate', $('#creationDate').val());
       }
     });
@@ -66,8 +69,8 @@ export class ProjCreateComponent implements OnInit, AfterViewInit {
 
   createProj() {
     // Присваиваем дату из localStorage
-    this.createProjForm.value.creationDate = localStorage.getItem('creationDate');
-    console.log(this.createProjForm.value);
+    const dateTime = localStorage.getItem('creationDate').split('.').reverse().join('.');
+    this.createProjForm.value.creationDate = firestore.Timestamp.fromDate(new Date(dateTime));
     this.projectService.createProject(this.createProjForm.value).then(res => {
       this.notifyService.success('Успешно', 'Элемент успешно обновлен');
     }).catch(err => {

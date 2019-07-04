@@ -7,6 +7,7 @@ declare var $: any;
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {NotificationsService} from 'angular2-notifications';
 import {UploadService} from '../../../upload.service';
+import {firestore} from 'firebase';
 
 @Component({
   selector: 'app-proj-update',
@@ -52,11 +53,17 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
         ...data.data()
       } as Project;
 
+      function timestampToDate(ts) {
+        let d = new Date();
+        d.setTime(ts);
+        return ('0' + d.getDate()).slice(-2) + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + d.getFullYear();
+      }
+
       this.updProjForm.get('id').setValue(data.id);
       this.updProjForm.get('title').setValue(data.data().title);
       this.updProjForm.get('description').setValue(data.data().description);
       this.updProjForm.get('author').setValue(data.data().author);
-      this.updProjForm.get('creationDate').setValue(data.data().creationDate);
+      this.updProjForm.get('creationDate').setValue(timestampToDate(data.data().creationDate.seconds * 1000));
       this.updProjForm.get('tags').setValue(data.data().tags);
       this.updProjForm.get('img').setValue(data.data().img);
       this.imgUrl = data.data().img;
@@ -83,13 +90,14 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
 
   updateProj() {
     // Присваиваем дату из localStorage
-    this.updProjForm.value.creationDate = localStorage.getItem('creationDate');
-    console.log(this.updProjForm.value);
+    const dateTime = localStorage.getItem('creationDate').split('.').reverse().join('.');
+    this.updProjForm.value.creationDate = firestore.Timestamp.fromDate(new Date(dateTime));
     // Обновляем данные проекта
     this.projectService.updateProject(this.updProjForm.value).then(res => {
       this.notifyService.success('Успешно', 'Элемент успешно обновлен');
     }).catch(err => {
       this.notifyService.error('Ошибка', err);
+      console.log(err);
     });
   }
 }

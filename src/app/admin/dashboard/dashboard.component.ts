@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.projectService.getProjects().subscribe(data => {
+    this.projectService.getProjectsLenght().subscribe(data => {
       this.projects = data.map(e => {
         return {
           id: e.payload.doc.id,

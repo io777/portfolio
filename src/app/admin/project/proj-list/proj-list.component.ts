@@ -6,7 +6,7 @@ import {NotificationsService} from 'angular2-notifications';
 @Component({
   selector: 'app-proj-list',
   templateUrl: './proj-list.component.html',
-  styleUrls: ['./proj-list.component.sass']
+  styleUrls: ['./proj-list.component.scss']
 })
 export class ProjListComponent implements OnInit {
 
@@ -18,7 +18,12 @@ export class ProjListComponent implements OnInit {
       this.projects = data.map(e => {
         return {
           id: e.payload.doc.id,
-          ...e.payload.doc.data()
+          title: e.payload.doc.data().title,
+          description: e.payload.doc.data().description,
+          author: e.payload.doc.data().author,
+          img: e.payload.doc.data().img,
+          tags: e.payload.doc.data().tags.split(','),
+          creationDate: e.payload.doc.data().creationDate
         } as Project;
       });
     });
@@ -27,6 +32,25 @@ export class ProjListComponent implements OnInit {
   deleteProj(projectId) {
     this.projectService.deleteProject(projectId);
     this.notifyService.success('Успешно', 'Элемент успешно удален');
+  }
+
+  loadMore(key) {
+    console.log(key);
+    this.projectService.getProjects(key).subscribe(data => {
+      const temp = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          title: e.payload.doc.data().title,
+          description: e.payload.doc.data().description,
+          author: e.payload.doc.data().author,
+          img: e.payload.doc.data().img,
+          tags: e.payload.doc.data().tags.split(','),
+          creationDate: e.payload.doc.data().creationDate
+        } as Project;
+      });
+      this.projects = this.projects.concat(temp);
+      console.log(this.projects);
+    });
   }
 
 }
