@@ -11,12 +11,12 @@ import { environment } from '../environments/environment';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './main/home/home.component';
+import { HeaderComponent } from './main/header/header.component';
+import { FooterComponent } from './main/footer/footer.component';
 import { LoginComponent } from './admin/login/login.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { ContactComponent } from './contact/contact.component';
+import { ContactComponent } from './main/contact/contact.component';
 import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { ArticleComponent } from './admin/article/article.component';
@@ -25,7 +25,7 @@ import {AdminComponent} from './admin/admin.component';
 import { ProjectComponent } from './admin/project/project.component';
 import { ProjCreateComponent } from './admin/project/proj-create/proj-create.component';
 import { ProjUpdateComponent } from './admin/project/proj-update/proj-update.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { PagenotfoundComponent } from './main/pagenotfound/pagenotfound.component';
 import { ProjListComponent } from './admin/project/proj-list/proj-list.component';
 import {CommonModule} from '@angular/common';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
@@ -33,6 +33,8 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireStorage} from '@angular/fire/storage';
 import { SearchPipe } from './_pipe/serach/search.pipe';
+import { ProjecthomeComponent } from './main/projecthome/projecthome.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { SearchPipe } from './_pipe/serach/search.pipe';
     ProjUpdateComponent,
     PagenotfoundComponent,
     ProjListComponent,
-    SearchPipe
+    SearchPipe,
+    ProjecthomeComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

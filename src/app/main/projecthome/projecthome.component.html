@@ -1,0 +1,32 @@
+<section class="proj-home my-5">
+    <div class="container proj-home__container">
+      <div class="row proj-home__row">
+        <div class="col-md-12 proj-home__col d-flex align-items-center justify-content-center my-4" *ngIf="!project">
+          <i class="fa fa-spinner fa-spin fa-4x fa-fw color-green"></i>
+          <span class="sr-only">Загрузка...</span>
+        </div>
+        <div class="col-md-12 proj-home__col" *ngIf="project">
+          <h3 class="proj-home__title">{{project.title}}</h3>
+          <img class="proj-home__img" src="https://picsum.photos/id/100/1140/428" alt="">
+          <p [innerHTML]="project.description" class="proj-home__description"></p>
+          <div class="proj-home__links">
+            <ul class="proj-home__links-list">
+              <li class="proj-home__links-item">
+                <i class="fa fa-user fa-lg proj-home__links-icon"></i>
+                <span class="proj-home__links-name">{{project.author}}</span>
+              </li>
+              <li class="proj-home__links-item">
+                <i class="fa fa-calendar fa-lg proj-home__links-icon"></i>
+                <span class="proj-home__links-name">{{dateCreate}}</span>
+              </li>
+              <li class="proj-home__links-item">
+                <i class="fa fa-tags fa-lg proj-home__links-icon" aria-hidden="true"></i>
+                <span class="proj-home__links-name">{{project.tags}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+

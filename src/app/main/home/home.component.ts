@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {Project} from '../../../db/model/project.model';
-import {ProjectService} from '../../../db/project.service';
-import {NotificationsService} from 'angular2-notifications';
+import {ProjectService} from '../../db/project.service';
+import {Project} from '../../db/model/project.model';
 
 @Component({
-  selector: 'app-proj-list',
-  templateUrl: './proj-list.component.html',
-  styleUrls: ['./proj-list.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class ProjListComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   projectCount: number;
   projects: Project[];
-  constructor(private notifyService: NotificationsService, private projectService: ProjectService) { }
+  tag = '';
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
-
     this.projectService.getProjectsLength().subscribe(data => {
       this.projectCount = data.length;
     });
@@ -33,12 +32,8 @@ export class ProjListComponent implements OnInit {
           creationDate: e.payload.doc.data().creationDate
         } as Project;
       });
+      console.log(this.projects);
     });
-  }
-
-  deleteProj(projectId) {
-    this.projectService.deleteProject(projectId);
-    this.notifyService.success('Успешно', 'Элемент успешно удален');
   }
 
   loadMore(key) {

@@ -8,6 +8,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {NotificationsService} from 'angular2-notifications';
 import {UploadService} from '../../../upload.service';
 import {firestore} from 'firebase';
+import {ToolsService} from '../../../db/tools.service';
 
 @Component({
   selector: 'app-proj-update',
@@ -25,7 +26,8 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
     private notifyService: NotificationsService,
     private projectService: ProjectService,
     private route: ActivatedRoute,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private tools: ToolsService) { }
 
   updProjForm = this.fb.group({
     id: ['', [Validators.required]],
@@ -47,23 +49,16 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.projectService.getProject(this.route.snapshot.params.id).subscribe(data => {
-      console.log(data.data());
       this.project = {
         id: data.id,
         ...data.data()
       } as Project;
 
-      function timestampToDate(ts) {
-        let d = new Date();
-        d.setTime(ts);
-        return ('0' + d.getDate()).slice(-2) + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + d.getFullYear();
-      }
-
       this.updProjForm.get('id').setValue(data.id);
       this.updProjForm.get('title').setValue(data.data().title);
       this.updProjForm.get('description').setValue(data.data().description);
       this.updProjForm.get('author').setValue(data.data().author);
-      this.updProjForm.get('creationDate').setValue(timestampToDate(data.data().creationDate.seconds * 1000));
+      this.updProjForm.get('creationDate').setValue(this.tools.timestampToDate(data.data().creationDate.seconds * 1000));
       this.updProjForm.get('tags').setValue(data.data().tags);
       this.updProjForm.get('img').setValue(data.data().img);
       this.imgUrl = data.data().img;
