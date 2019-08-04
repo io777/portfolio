@@ -22,6 +22,10 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
+        path: '**',
+        component: PagenotfoundComponent
+      },
+      {
         path: 'projects/:id',
         component: ProjecthomeComponent
       }
@@ -56,8 +60,8 @@ const routes: Routes = [
         component: ArticleComponent
       }
     ], canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: '**', component: PagenotfoundComponent},
+  {path: 'login', component: LoginComponent}
+  // {path: '**', component: PagenotfoundComponent},
 ];
 
 @NgModule({
