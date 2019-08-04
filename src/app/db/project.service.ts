@@ -9,7 +9,7 @@ export class ProjectService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  getProjects(key?, offset= 2) {
+  getProjects(key?, offset= 3) {
     if (key) {
       return this.firestore.collection('projects', ref => {
         return ref.orderBy('creationDate', 'desc').startAfter(key).limit(offset);
@@ -21,7 +21,7 @@ export class ProjectService {
     }
   }
 
-  getProjectsLenght() {
+  getProjectsLength() {
     return this.firestore.collection('projects').snapshotChanges();
   }
 

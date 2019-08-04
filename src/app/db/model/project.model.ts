@@ -6,5 +6,4 @@ export class Project {
   img: string;
   tags: string;
   creationDate: Date;
-  updateDate: Date;
 }

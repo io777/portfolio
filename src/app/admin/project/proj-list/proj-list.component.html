@@ -15,9 +15,9 @@
     </div>
   </div>
   <div class="row proj__row">
-    <div class="col-md-12 proj__col">
-      <div class="card-columns">
-        <div class="card" *ngFor="let project of projects | filter: query">
+    <div class="col-md-4 proj__col mb-3" *ngFor="let project of projects | filter: query">
+      <!--<div class="card-columns">-->
+        <div class="card border-dark">
           <img class="card-img-top" src="{{project.img}}" width="350" height="255" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{project.title}}</h5>
@@ -33,9 +33,9 @@
             <button (click)="deleteProj(project.id)" class="ml-2 mt-2 btn btn-sm btn-outline-danger">Удалить</button>
           </div>
         </div>
-      </div>
+      <!--</div>-->
     </div>
-    <div class="col-md-12 proj__col d-flex justify-content-center">
+    <div class="col-md-12 proj__col d-flex justify-content-center" *ngIf="projects && projectCount > projects.length">
       <button (click)="loadMore(projects[projects.length - 1].creationDate)" class="w-100 btn-outline-success btn-sm">Загрузить еще</button>
     </div>
   </div>

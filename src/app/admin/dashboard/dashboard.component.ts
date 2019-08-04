@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ProjectService} from '../../db/project.service';
-import {Project} from '../../db/model/project.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,17 +8,12 @@ import {Project} from '../../db/model/project.model';
 })
 export class DashboardComponent implements OnInit {
 
-  projects: Project[];
+  projectCount: any;
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.projectService.getProjectsLenght().subscribe(data => {
-      this.projects = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          ...e.payload.doc.data()
-        } as Project;
-      });
+    this.projectService.getProjectsLength().subscribe(data => {
+      this.projectCount = data.length;
     });
   }
 

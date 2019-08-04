@@ -10,12 +10,19 @@ import {NotificationsService} from 'angular2-notifications';
 })
 export class ProjListComponent implements OnInit {
 
+  projectCount: number;
   projects: Project[];
   constructor(private notifyService: NotificationsService, private projectService: ProjectService) { }
 
   ngOnInit() {
+
+    this.projectService.getProjectsLength().subscribe(data => {
+      this.projectCount = data.length;
+    });
+
     this.projectService.getProjects().subscribe(data => {
       this.projects = data.map(e => {
+        // @ts-ignore
         return {
           id: e.payload.doc.id,
           title: e.payload.doc.data().title,
@@ -38,6 +45,7 @@ export class ProjListComponent implements OnInit {
     console.log(key);
     this.projectService.getProjects(key).subscribe(data => {
       const temp = data.map(e => {
+        // @ts-ignore
         return {
           id: e.payload.doc.id,
           title: e.payload.doc.data().title,
@@ -48,7 +56,9 @@ export class ProjListComponent implements OnInit {
           creationDate: e.payload.doc.data().creationDate
         } as Project;
       });
-      this.projects = this.projects.concat(temp);
+      this.projects = this.projects.concat(temp).sort((a: any, b: any) => {
+        return b.creationDate - a.creationDate;
+      });
       console.log(this.projects);
     });
   }
