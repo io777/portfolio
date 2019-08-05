@@ -22,7 +22,6 @@ export class ProjListComponent implements OnInit {
 
     this.projectService.getProjects().subscribe(data => {
       this.projects = data.map(e => {
-        // @ts-ignore
         return {
           id: e.payload.doc.id,
           title: e.payload.doc.data().title,
@@ -44,7 +43,6 @@ export class ProjListComponent implements OnInit {
   loadMore(key) {
     this.projectService.getProjects(key).subscribe(data => {
       const temp = data.map(e => {
-        // @ts-ignore
         return {
           id: e.payload.doc.id,
           title: e.payload.doc.data().title,

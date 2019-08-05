@@ -16,22 +16,6 @@ import {ProjecthomeComponent} from './main/projecthome/projecthome.component';
 import {MainComponent} from './main/main.component';
 
 const routes: Routes = [
-  {path: '', component: MainComponent, children: [
-      {
-        path: '',
-        component: HomeComponent
-      },
-      {
-        path: '**',
-        component: PagenotfoundComponent
-      },
-      {
-        path: 'projects/:id',
-        component: ProjecthomeComponent
-      }
-    ]},
-  // {path: 'projects/:id', component: ProjecthomeComponent},
-  {path: 'contact', component: ContactComponent},
   {path: 'admin', component: AdminComponent, children: [
       {
         path: '',
@@ -60,8 +44,25 @@ const routes: Routes = [
         component: ArticleComponent
       }
     ], canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent}
-  // {path: '**', component: PagenotfoundComponent},
+  {path: 'login', component: LoginComponent},
+  {path: '', component: MainComponent, children: [
+      {
+        path: '',
+        component: HomeComponent
+      },
+      {
+        path: 'projects/:id',
+        component: ProjecthomeComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      },
+      {
+        path: '**',
+        component: PagenotfoundComponent
+      }
+    ]}
 ];
 
 @NgModule({
