@@ -18,7 +18,8 @@ export class ProjCreateComponent implements OnInit, AfterViewInit {
 
   public Editor = ClassicEditor;
   project: Project;
-  imgUrl: string;
+  imgAvaUrl: string;
+  imgMainUrl: string;
 
   constructor(
     public uploadService: UploadService,
@@ -34,7 +35,8 @@ export class ProjCreateComponent implements OnInit, AfterViewInit {
     author: ['', [Validators.required]],
     creationDate: ['', [Validators.required]],
     tags: ['', [Validators.required]],
-    img: ['', [Validators.required]]
+    img: ['', [Validators.required]],
+    img_description: ['', [Validators.required]]
   });
 
   get title() {return this.createProjForm.get('title'); }
@@ -43,6 +45,7 @@ export class ProjCreateComponent implements OnInit, AfterViewInit {
   get creationDate() {return this.createProjForm.get('creationDate'); }
   get tags() {return this.createProjForm.get('tags'); }
   get img() {return this.createProjForm.get('img'); }
+  get img_description() {return this.createProjForm.get('img_description'); }
 
   ngOnInit() {
     this.imgUrl = '';
@@ -59,11 +62,19 @@ export class ProjCreateComponent implements OnInit, AfterViewInit {
     });
   }
 
-  uploadFile(event) {
+  uploadAvaFile(event) {
     this.uploadService.onFileChange(event);
     this.uploadService.uploadFile().then(res => {
       this.createProjForm.get('img').setValue(this.uploadService.url);
-      this.imgUrl = this.uploadService.url;
+      this.imgAvaUrl = this.uploadService.url;
+    });
+  }
+
+  uploadMainFile(event) {
+    this.uploadService.onFileChange(event);
+    this.uploadService.uploadFile().then(res => {
+      this.createProjForm.get('img_description').setValue(this.uploadService.url);
+      this.imgMainUrl = this.uploadService.url;
     });
   }
 

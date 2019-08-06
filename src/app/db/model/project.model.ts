@@ -4,6 +4,7 @@ export class Project {
   description: string;
   author: string;
   img: string;
+  img_description: string;
   tags: string;
   creationDate: Date;
 }

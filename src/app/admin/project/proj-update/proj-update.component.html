@@ -7,11 +7,24 @@
   <div class="row proj-upd__row">
     <div class="col-md-12 proj-upd__col">
       <simple-notifications></simple-notifications>
-      <div class="form-group">
-        <label>Аватарка</label>
-        <input class="form-control-file" type="file" (change)="uploadFile($event)">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Аватарка</label>
+            <input class="form-control-file" type="file" (change)="uploadAvaFile($event)">
+            <br/>
+            <img *ngIf="imgAvaUrl" src="{{imgAvaUrl}}" alt="" width="160" height="230">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Главное фото</label>
+            <input class="form-control-file" type="file" (change)="uploadMainFile($event)">
+            <br/>
+            <img *ngIf="imgMainUrl" src="{{imgMainUrl}}" alt="" width="160" height="230">
+          </div>
+        </div>
       </div>
-      <img *ngIf="imgUrl" src="{{imgUrl}}" alt="" width="160" height="230">
       <form [ngClass]="{'hidden': !project}" [formGroup]="updProjForm" (ngSubmit)="updateProj()" novalidate>
         <input type="text" hidden formControlName="id">
         <input type="text" hidden formControlName="img">

@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-12 proj-home__col" *ngIf="project">
           <h3 class="proj-home__title">{{project.title}}</h3>
-          <img class="proj-home__img" src="https://picsum.photos/id/100/1140/428" alt="">
+          <img class="proj-home__img" src="{{project.img_description}}" alt="">
           <p [innerHTML]="project.description" class="proj-home__description"></p>
           <div class="proj-home__links">
             <ul class="proj-home__links-list">
