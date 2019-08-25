@@ -1,4 +1,5 @@
 <section class="footer">
+  <simple-notifications></simple-notifications>
   <div class="container footer__container">
     <div class="row footer__row-top">
       <div class="col-md-8 footer__col">
@@ -9,12 +10,30 @@
       </div>
       <div class="col-md-4 footer__col">
         <h4 class="footer__title">contact us</h4>
-        <!--<form action="" class="footer__form">-->
-          <input type="text" class="footer__input" placeholder="Name">
-          <input type="text" class="footer__input" placeholder="Email">
-          <textarea cols="10" rows="3" type="text" class="footer__textarea" placeholder="Message"></textarea>
-          <button class="footer__btn">Отправить</button>
-        <!--</form>-->
+        <form [formGroup]="createContactForm" (ngSubmit)="createContact()" novalidate>
+          <input [ngClass]="{ 'is-invalid': name.invalid && (name.dirty || name.touched) }" name="name" type="text" class="footer__input form-control" placeholder="Name" formControlName="name">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+            <div *ngIf="name.errors.required">
+              Обязательное поле
+            </div>
+          </div>
+          <input [ngClass]="{ 'is-invalid': email.invalid && (email.dirty || email.touched) }" name="email" type="email" class="footer__input form-control" placeholder="Email" formControlName="email">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+            <div *ngIf="email.errors.required">
+              Обязательное поле
+            </div>
+            <div *ngIf="email.errors.email">
+              Введите корректный email
+            </div>
+          </div>
+          <textarea [ngClass]="{ 'is-invalid': message.invalid && (message.dirty || message.touched) }" name="message" cols="10" rows="3" type="text" class="footer__textarea form-control" placeholder="Message" formControlName="message"></textarea>
+          <div *ngIf="message.invalid && (message.dirty || message.touched)" class="invalid-feedback">
+            <div *ngIf="message.errors.required">
+              Обязательное поле
+            </div>
+          </div>
+          <input type="submit" class="footer__btn" value="Отправить" [disabled]="!createContactForm.valid">
+        </form>
       </div>
     </div>
     <hr class="footer__hr">

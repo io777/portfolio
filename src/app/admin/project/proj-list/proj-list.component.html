@@ -28,7 +28,7 @@
             <!--<p [innerHTML]="project.description" class="card-text"></p>-->
             <footer class="d-flex justify-content-between">
               <small class="text-muted">{{project.author}}</small>
-              <small class="text-muted">{{project.creationDate.seconds * 1000 | date: 'dd.MM.yyyy'}}</small>
+              <small class="text-muted">{{project.creationDate.seconds * 1000 | date: 'dd.MM.yyyy HH:mm'}}</small>
             </footer>
             <div class="proj__tags mt-2 mb-2">
               <span *ngFor="let tag of project.tags" class="mr-2 badge badge-secondary">{{tag}}</span>

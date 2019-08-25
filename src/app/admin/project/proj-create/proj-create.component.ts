@@ -20,6 +20,7 @@ export class ProjCreateComponent implements OnInit, AfterViewInit {
   project: Project;
   imgAvaUrl: string;
   imgMainUrl: string;
+  imgUrl: string;
 
   constructor(
     public uploadService: UploadService,
@@ -80,8 +81,12 @@ export class ProjCreateComponent implements OnInit, AfterViewInit {
 
   createProj() {
     // Присваиваем дату из localStorage
-    const dateTime = localStorage.getItem('creationDate').split('.').reverse().join('.');
-    this.createProjForm.value.creationDate = firestore.Timestamp.fromDate(new Date(dateTime));
+    const dateTimeArray = [];
+    const dateTime = localStorage.getItem('creationDate').split(' ');
+    dateTimeArray[0] = dateTime[0].split('.').reverse().join('.');
+    dateTimeArray[1] = dateTime[1];
+    const dateTimeFormat = dateTimeArray.join(' ');
+    this.createProjForm.value.creationDate = firestore.Timestamp.fromMillis(+new Date(dateTimeFormat));
     this.projectService.createProject(this.createProjForm.value).then(res => {
       this.notifyService.success('Успешно', 'Элемент успешно обновлен');
     }).catch(err => {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProjectService} from '../../db/project.service';
+import {ContactService} from '../../db/contact.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,12 +10,21 @@ import {ProjectService} from '../../db/project.service';
 export class DashboardComponent implements OnInit {
 
   projectCount: any;
-  constructor(private projectService: ProjectService) { }
+  contactCount: any;
+
+  constructor(
+    private projectService: ProjectService,
+    private contactService: ContactService
+  ) { }
 
   ngOnInit() {
     this.projectService.getProjectsLength().subscribe(data => {
       this.projectCount = data.length;
     });
+    this.contactService.getContactsLength().subscribe(data => {
+      this.contactCount = data.length;
+    });
+
   }
 
 }

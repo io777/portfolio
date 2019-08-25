@@ -1,0 +1,54 @@
+<div class="container contact__container mt-4">
+  <simple-notifications></simple-notifications>
+  <ol class="breadcrumb mt-3">
+    <li class="breadcrumb-item"><a routerLink="/admin">Главная панель</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Сообщения</li>
+  </ol>
+  <div class="row contact__row mb-3">
+    <div class="col-md-10 contact__col">
+      <div class="form-group">
+        <input type="text" placeholder="Поиск..." class="form-control" [(ngModel)]="query">
+      </div>
+    </div>
+    <div class="col-md-2 contact__col">
+      <a routerLink="/admin/contacts/create" class="btn btn-outline-success">Добавить</a>
+    </div>
+  </div>
+  <div class="row contact__row" *ngIf="contacts">
+    <div class="col-md-12 contact__col">
+      <table class="contact__table table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">email</th>
+            <th scope="col">message</th>
+            <th scope="col">creationDate</th>
+            <th scope="col">Операции</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contact of contacts | filter: query; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{contact.name}}</td>
+            <td>{{contact.email}}</td>
+            <td [innerHTML]="contact.message"></td>
+            <td>{{contact.creationDate.seconds * 1000 | date: 'dd.MM.yyyy HH:mm'}}</td>
+            <td>
+              <a routerLink="/admin/contacts/{{contact.id}}" class="btn btn-sm btn-outline-primary">Обновить</a>
+              <button (click)="deleteContact(contact.id)" class="ml-2 btn btn-sm btn-outline-danger">Удалить</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-md-12 contact__col d-flex justify-content-center" *ngIf="contacts && contactCount > contacts.length">
+      <button (click)="loadMore(contacts[contacts.length - 1].creationDate)" class="w-100 btn-outline-success btn-sm">Загрузить еще</button>
+    </div>
+  </div>
+  <div class="row contact__row d-flex align-items-center justify-content-center" *ngIf="!contacts">
+    <i class="fa fa-spinner fa-spin fa-4x fa-fw"></i>
+    <span class="sr-only">Загрузка...</span>
+  </div>
+</div>

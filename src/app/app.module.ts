@@ -16,7 +16,6 @@ import { HeaderComponent } from './main/header/header.component';
 import { FooterComponent } from './main/footer/footer.component';
 import { LoginComponent } from './admin/login/login.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { ContactComponent } from './main/contact/contact.component';
 import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { ArticleComponent } from './admin/article/article.component';
@@ -35,6 +34,11 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import { SearchPipe } from './_pipe/serach/search.pipe';
 import { ProjecthomeComponent } from './main/projecthome/projecthome.component';
 import { MainComponent } from './main/main.component';
+import { AdminContactComponent } from './admin/admin-contact/admin-contact.component';
+import { AdminContactListComponent } from './admin/admin-contact/admin-contact-list/admin-contact-list.component';
+import { AdminContactUpdateComponent } from './admin/admin-contact/admin-contact-update/admin-contact-update.component';
+import { AdminContactCreateComponent } from './admin/admin-contact/admin-contact-create/admin-contact-create.component';
+import { ContactComponent } from './main/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,6 @@ import { MainComponent } from './main/main.component';
     FooterComponent,
     LoginComponent,
     DashboardComponent,
-    ContactComponent,
     ArticleComponent,
     AdminHeaderComponent,
     AdminComponent,
@@ -55,7 +58,12 @@ import { MainComponent } from './main/main.component';
     ProjListComponent,
     SearchPipe,
     ProjecthomeComponent,
-    MainComponent
+    MainComponent,
+    AdminContactComponent,
+    AdminContactListComponent,
+    AdminContactUpdateComponent,
+    AdminContactCreateComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

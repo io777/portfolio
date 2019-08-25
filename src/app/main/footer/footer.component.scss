@@ -44,6 +44,9 @@
     &:hover {
       background-color: #86e5c9;
     }
+    &:disabled {
+      opacity: 0.7;
+    }
   }
   &__hr {
     border-color: #ffffff;

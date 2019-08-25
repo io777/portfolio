@@ -14,12 +14,34 @@ import {ProjListComponent} from './admin/project/proj-list/proj-list.component';
 import {ProjCreateComponent} from './admin/project/proj-create/proj-create.component';
 import {ProjecthomeComponent} from './main/projecthome/projecthome.component';
 import {MainComponent} from './main/main.component';
+import {AdminContactComponent} from './admin/admin-contact/admin-contact.component';
+import {AdminContactListComponent} from './admin/admin-contact/admin-contact-list/admin-contact-list.component';
+import {AdminContactCreateComponent} from './admin/admin-contact/admin-contact-create/admin-contact-create.component';
+import {AdminContactUpdateComponent} from './admin/admin-contact/admin-contact-update/admin-contact-update.component';
 
 const routes: Routes = [
   {path: 'admin', component: AdminComponent, children: [
       {
         path: '',
         component: DashboardComponent
+      },
+      {
+        path: 'contacts',
+        component: AdminContactComponent,
+        children: [
+          {
+            path: '',
+            component: AdminContactListComponent
+          },
+          {
+            path: 'create',
+            component: AdminContactCreateComponent
+          },
+          {
+            path: ':id',
+            component: AdminContactUpdateComponent
+          }
+        ]
       },
       {
         path: 'projects',

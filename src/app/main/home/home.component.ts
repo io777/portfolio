@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
           creationDate: e.payload.doc.data().creationDate
         } as Project;
       });
-      console.log(this.projects);
     });
   }
 

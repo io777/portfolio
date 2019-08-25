@@ -20,11 +20,23 @@
           <h5 class="card-title card-title__art">Статьи</h5>
           <p class="card-text card-text__art">Статьи написанные SHAP</p>
           <a routerLink="/admin/articles" class="btn btn-sm btn-success">
-            Всего статей <span class="badge badge-light">4</span>
+            Всего статей <span class="badge badge-light">0</span>
           </a>
         </div>
       </div>
     </div>
-    <div class="col-md-6 board__col-article"></div>
+  </div>
+  <div class="row board__row mt-3">
+    <div class="col-md-6 board__col-message">
+      <div class="card card__message">
+        <div class="card-body card-body__message">
+          <h5 class="card-title card-title__message">Сообщения</h5>
+          <p class="card-text card-text__message">Сообщения для SHAP</p>
+          <a routerLink="/admin/contacts" class="btn btn-sm btn-warning">
+            Всего сообщений <span class="badge badge-light">{{contactCount}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

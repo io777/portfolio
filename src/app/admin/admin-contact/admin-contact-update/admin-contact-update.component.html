@@ -1,0 +1,69 @@
+<div class="container contact-upd__container">
+  <ol class="breadcrumb mt-3">
+    <li class="breadcrumb-item"><a routerLink="/admin">Главная панель</a></li>
+    <li class="breadcrumb-item"><a routerLink="/admin/contacts">Сообщения</a></li>
+    <li class="breadcrumb-item active" *ngIf="contact" aria-current="page">{{contact.name}}</li>
+  </ol>
+  <div class="row contact-upd__row">
+    <div class="col-md-12 contact-upd__col">
+      <simple-notifications></simple-notifications>
+      <form [ngClass]="{'hidden': !contact}" [formGroup]="updContactForm" (ngSubmit)="updateContact()" novalidate>
+        <input type="text" hidden formControlName="id">
+        <div class="row contact-upd__row">
+          <div class="col-md-6 contact-upd__col">
+            <div class="form-group">
+              <label for="name">Имя</label>
+              <input [ngClass]="{ 'is-invalid': name.invalid && (name.dirty || name.touched) }" type="text" name="name" class="form-control" id="name" formControlName="name">
+              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+                <div *ngIf="name.errors.required">
+                  Обязательное поле
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 contact-upd__col">
+            <div class="form-group">
+              <label for="creationDate">Дата создания</label>
+              <input [ngClass]="{ 'is-invalid': creationDate.invalid && (creationDate.dirty || creationDate.touched) }" type="text" id="creationDate" data-timepicker="true" name="creationDate" class="form-control" formControlName="creationDate">
+              <div *ngIf="creationDate.invalid && (creationDate.dirty || creationDate.touched)" class="invalid-feedback">
+                <div *ngIf="creationDate.errors.required">
+                  Обязательное поле
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row contact-upd__row">
+          <div class="col-md-6 contact-upd__col">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input [ngClass]="{ 'is-invalid': email.invalid && (email.dirty || email.touched) }" type="email" name="email" class="form-control" id="email" formControlName="email">
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                <div *ngIf="email.errors.required">
+                  Обязательное поле
+                </div>
+                <div *ngIf="email.errors.email">
+                  Введите корректный email
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+        <div class="row contact-upd__row">
+          <div class="col-md-12 contact-upd__col">
+            <div class="form-group">
+              <label for="message">Сообщение</label>
+              <ckeditor tagName="textarea" [editor]="Editor" name="message" id="message" formControlName="message"></ckeditor>
+              <div *ngIf="message.invalid && (message.dirty || message.touched)">
+                <div *ngIf="message.errors.required" class="danger__text">
+                  Обязательное поле
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <input type="submit" class="btn btn-outline-success" value="Сохранить" [disabled]="!updContactForm.valid">
+      </form>
+    </div>
+  </div>
+</div>

@@ -98,8 +98,12 @@ export class ProjUpdateComponent implements OnInit, AfterViewInit {
 
   updateProj() {
     // Присваиваем дату из localStorage
-    const dateTime = localStorage.getItem('creationDate').split('.').reverse().join('.');
-    this.updProjForm.value.creationDate = firestore.Timestamp.fromDate(new Date(dateTime));
+    const dateTimeArray = [];
+    const dateTime = localStorage.getItem('creationDate').split(' ');
+    dateTimeArray[0] = dateTime[0].split('.').reverse().join('.');
+    dateTimeArray[1] = dateTime[1];
+    const dateTimeFormat = dateTimeArray.join(' ');
+    this.updProjForm.value.creationDate = firestore.Timestamp.fromMillis(+new Date(dateTimeFormat));
     // Обновляем данные проекта
     this.projectService.updateProject(this.updProjForm.value).then(res => {
       this.notifyService.success('Успешно', 'Элемент успешно обновлен');
